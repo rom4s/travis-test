@@ -1,0 +1,18 @@
+branches:
+  only:
+    - master
+
+git:
+  depth: 10
+
+matrix:
+  include:
+    - os : linux
+      language: cpp
+      python: "3.6"
+
+    - os : windows
+      language : cpp
+      python: "3.6"
+
+script: python --version
