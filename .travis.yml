@@ -15,4 +15,4 @@ matrix:
       language : cpp
       python: "3.6"
 
-script: python --version
+script: python3 --version && pip3 --version
