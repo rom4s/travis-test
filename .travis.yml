@@ -14,13 +14,13 @@ jobs:
       dist: trusty
       language: cpp
       python: "3.4"
-      before_install:
-        - export WDIR=$(pwd)
-        - export PATH=~/.local/bin:$WDIR/clang9:$PATH
-        - sudo apt-get -q update
-        - sudo apt-get -y install python3 python3-pip
-        - sudo python3 -m pip install requests uritemplate discord-webhook
-        - alias python=python3
+      # before_install:
+      #   - export WDIR=$(pwd)
+      #   - export PATH=~/.local/bin:$WDIR/clang9:$PATH
+      #   - sudo apt-get -q update
+      #   - sudo apt-get -y install python3 python3-pip
+      #   - sudo python3 -m pip install requests uritemplate discord-webhook
+      #   - alias python=python3
       script: python3 --version; python --version; pip3 --version; pip --version; echo ~; ls; pwd;
 
     - name: 'Build on Windows'
@@ -28,13 +28,13 @@ jobs:
       compiler: msvc
       # language: cpp
       # python: "3.8"
-      before_install:
-        - export WDIR=$(pwd)
-        - choco install python --version=3.7.0
-        - export PATH=/C/Python38:$PATH
+      # before_install:
+      #   - export WDIR=$(pwd)
+      #   - choco install python --version=3.7.0
+      #   - export PATH=/C/Python38:$PATH
       script:
         # - cd '/C/Program Files (x86)/Microsoft Visual Studio/2017/BuildTools/VC/Auxiliary/Build/' && powershell "cmd /C '.\vcvarsall.bat x86; cl; echo 12345'" && cd $WDIR && pwd
-        - cmd.exe /C '"C:\Program Files (x86)\Microsoft Visual Studio\2017\BuildTools\VC\Auxiliary\Build\vcvarsall.bat" amd64 && cl'
+        - cmd.exe /C '"C:\\Program Files (x86)\\Microsoft Visual Studio\\2017\\BuildTools\\VC\\Auxiliary\\Build\\vcvarsall.bat" amd64 && cl'
         - echo 'ok?'
 
 # script: python3 --version; python --version; pip3 --version; pip --version; echo ~; ls; pwd; cl; echo 'ok?'
