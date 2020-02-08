@@ -30,7 +30,7 @@ jobs:
         - export WDIR=$(pwd)
         - choco install python --version=3.7.0
         - export PATH=/C/Python38:$PATH
-        - cd '/C/Program Files (x86)/Microsoft Visual Studio/2017/BuildTools/VC/Auxiliary/Build/' && powershell "vcvarsall.bat x86; cl; echo 12345" && cd $WDIR && pwd
+        - cd '/C/Program Files (x86)/Microsoft Visual Studio/2017/BuildTools/VC/Auxiliary/Build/' && powershell ".\vcvarsall.bat x86; cl; echo 12345" && cd $WDIR && pwd
 
 
 script: python3 --version; python --version; pip3 --version; pip --version; echo ~; ls; pwd; cl; echo 'ok?'
