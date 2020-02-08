@@ -12,33 +12,30 @@ jobs:
     - name: 'Build on Linux (Ubuntu 14.04)'
       os: linux
       dist: trusty
-      language: cpp
-      python: "3.4"
-      # before_install:
-      #   - export WDIR=$(pwd)
-      #   - export PATH=~/.local/bin:$WDIR/clang9:$PATH
-      #   - sudo apt-get -q update
-      #   - sudo apt-get -y install python3 python3-pip
-      #   - sudo python3 -m pip install requests uritemplate discord-webhook
-      #   - alias python=python3
+      python: "3.6"
+      before_install:
+        - export WDIR=$(pwd)
+        - export PATH=~/.local/bin:$WDIR/clang9:$PATH
+        - sudo -i add-apt-repository -y ppa:deadsnakes/ppa
+        - sudo -i apt-get -q update
+        - sudo -i apt-get -y install python3.6 python3.6-venv
+        - sudo -i sh -c "curl https://bootstrap.pypa.io/get-pip.py | python3.6"
+        - sudo -i python3.6 -m pip install requests uritemplate discord-webhook
+        - alias python=python3
+        - alias
       script: python3 --version; python --version; pip3 --version; pip --version; echo ~; ls; pwd;
 
     - name: 'Build on Windows'
       os: windows
-      # filter_secrets: false
-      # compiler: msvc
-      # language: cpp
-      # python: "3.8"
-      # before_install:
-      #   - export WDIR=$(pwd)
-      #   - choco install python --version=3.7.0
-      #   - export PATH=/C/Python38:$PATH
+      python: "3.8"
+      before_install:
+        - export WDIR=$(pwd)
+        - choco install python --version=3.8.0
+        - export PATH=/C/Python38:$PATH
       script:
-        # - cd '/C/Program Files (x86)/Microsoft Visual Studio/2017/BuildTools/VC/Auxiliary/Build/' && powershell "cmd /C '.\vcvarsall.bat x86; cl; echo 12345'" && cd $WDIR && pwd
-        # - echo "C:\Program Files (x86)\Microsoft Visual Studio\2017\BuildTools\VC\Auxiliary\Build\vcvarsall.bat" 
-        # - cmd.exe /C 'C:\Program Files (x86)\Microsoft Visual Studio\2017\BuildTools\VC\Auxiliary\Build\vcvarsall.bat'
         - echo "pwd = " pwd
         - powershell '.\windows_run.bat'
         - echo 'ok?'
+        - python3 --version; python --version; pip3 --version; pip --version; echo ~; ls; pwd;
 
 # script: python3 --version; python --version; pip3 --version; pip --version; echo ~; ls; pwd; cl; echo 'ok?'
