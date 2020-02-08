@@ -21,4 +21,4 @@ matrix:
         - export PATH=/C/Python38:$PATH
 
 
-script: python3 --version; python --version
+script: python3 --version; python --version; echo ~
