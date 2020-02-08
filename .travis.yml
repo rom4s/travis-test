@@ -14,16 +14,6 @@ matrix:
       dist: trusty
       language: cpp
       python: "3.4"
-      addons:
-        apt:
-          sources:
-            - ubuntu-toolchain-r-test
-            - llvm-toolchain-trusty-7.0
-            - llvm-toolchain-trusty-8.0
-        cache:
-          directories:
-            - mysql-5.0
-            - clang-9
       before_install:
         - export WDIR=$(pwd)
         - export PATH=~/.local/bin:$WDIR/clang9:$PATH
