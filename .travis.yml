@@ -13,9 +13,11 @@ matrix:
       python: "3.6"
 
     - os : windows
-      language : shell
+      language : cpp
       before_install:
         - choco install python --version=3.8.0
+        - export PATH=/C/Python38:$PATH
+        - SET
 
 
 script: python3 --version || python --version
