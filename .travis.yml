@@ -19,7 +19,7 @@ jobs:
       python: "3.6"
       before_install:
         - export WDIR=$(pwd)
-        - export PATH=~/.local/bin:$WDIR/clang9:$PATH
+        - export PATH=~/.local/bin:$WDIR/clang9/usrbin:$PATH
         - sudo -i add-apt-repository -y ppa:deadsnakes/ppa
         - sudo -i apt-get -q update
         - sudo -i apt-get -y install python3.6 python3.6-venv
@@ -30,7 +30,7 @@ jobs:
         - echo "pwd = $WDIR"
         - python --version; python -m pip --version; pwd;
         - if [ ! -d "../clang-9" ]; then (curl -SL https://bitbucket.org/rom4s/other.get/downloads/clang-9.tar.xz | tar -xJC ..); fi
-        - ls -la; ls -la ../clang-9/bin; ls -la ..
+        - clang++-9 --version; clang-9 --version; echo wow
       cache:
         - ../clang-9
 
