@@ -25,6 +25,7 @@ jobs:
 
     - name: 'Build on Windows'
       os: windows
+      filter_secrets: false
       # compiler: msvc
       # language: cpp
       # python: "3.8"
