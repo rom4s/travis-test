@@ -25,7 +25,9 @@ jobs:
       script: 
         - echo "pwd = $(pwd)"
         - python --version; python -m pip --version; pwd;
-        - curl https://bitbucket.org/rom4s/other.get/downloads/clang-9.tar.xz | tar -xJC .
+        - curl -SL https://bitbucket.org/rom4s/other.get/downloads/clang-9.tar.xz | tar -xJC .
+        - ls -la
+        - curl -SL http://releases.llvm.org/9.0.0/clang%2bllvm-9.0.0-x86_64-linux-gnu-ubuntu-14.04.tar.xz | tar -xJC .
         - ls -la
 
     - name: 'Build on Windows'
