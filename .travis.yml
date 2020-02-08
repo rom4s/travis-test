@@ -25,7 +25,7 @@ jobs:
 
     - name: 'Build on Windows'
       os: windows
-      compiler: msvc
+      # compiler: msvc
       # language: cpp
       # python: "3.8"
       # before_install:
