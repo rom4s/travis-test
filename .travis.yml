@@ -29,7 +29,6 @@ matrix:
       before_install:
         - choco install python --version=3.7.0
         - export PATH=/C/Python38:$PATH
-        - '/C/Program Files (x86)/Microsoft Visual Studio/2017/BuildTools/VC/Auxiliary/Build/vcvarsall.bat' x86
 
 
 script: python3 --version; python --version; pip3 --version; pip --version; echo ~; ls; pwd; cl; echo 'ok?'
