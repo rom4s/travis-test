@@ -7,6 +7,10 @@ language: cpp
 git:
   depth: 10
 
+cache:
+  - ../mysql-5.5
+
+
 jobs:
   include:
     - name: 'Build on Linux (Ubuntu 14.04)'
@@ -23,12 +27,12 @@ jobs:
         - sudo -i sh -c "curl https://bootstrap.pypa.io/get-pip.py | python"
         - sudo -i python -m pip install requests uritemplate discord-webhook
       script: 
-        - echo "pwd = $(pwd)"
+        - echo "pwd = $WDIR"
         - python --version; python -m pip --version; pwd;
-        - curl -SL https://bitbucket.org/rom4s/other.get/downloads/clang-9.tar.xz | tar -xJC .
+        - [ -d "../clang-9" ] || (curl -SL https://bitbucket.org/rom4s/other.get/downloads/clang-9.tar.xz | tar -xJC ..)
         - ls -la
-        - curl -SL http://releases.llvm.org/9.0.0/clang%2bllvm-9.0.0-x86_64-linux-gnu-ubuntu-14.04.tar.xz | tar -xJC .
-        - ls -la
+      cache:
+        - ../clang-9
 
     - name: 'Build on Windows'
       os: windows
@@ -36,9 +40,9 @@ jobs:
       before_install:
         - export WDIR=$(pwd)
         - choco install python --version=3.8.0
-        - export PATH=/C/Python38:$PATH
+        - export PATH=/C/Python38:/C/Python38/Scripts:$PATH
       script:
-        - echo "pwd = $(pwd)"
+        - echo "pwd = $WDIR"
         - powershell '.\windows_run.bat'
         - python -m pip install --upgrade pip
         - python -m pip install requests uritemplate discord-webhook
