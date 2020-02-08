@@ -9,20 +9,22 @@ git:
 
 matrix:
   include:
-    - os : linux
+    - name: 'Build on Linux (Ubuntu 14.04)'
+      os: linux
       dist: trusty
       language: cpp
       python: "3.6"
       before_install:
         - alias python=python3
 
-    - os : windows
-      language : cpp
+    - name: 'Build on Windows'
+      os: windows
+      language: cpp
+      python: "3.6"
       before_install:
         - choco install python --version=3.6.0
         - export PATH=/C/Python38:$PATH
-        - alias python=python3
-        - cl; echo 'ok?'
+        - ls -la '/C/Program Files (x86)/Microsoft Visual Studio/'
 
 
-script: python3 --version; python --version; pip3 --version; pip --version; echo ~; ls; pwd
+script: python3 --version; python --version; pip3 --version; pip --version; echo ~; ls; pwd; cl; echo 'ok?'
