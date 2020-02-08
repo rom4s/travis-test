@@ -17,7 +17,7 @@ matrix:
       before_install:
         - choco install python --version=3.8.0
         - export PATH=/C/Python38:$PATH
-        - SET
+        - env
 
 
 script: python3 --version || python --version
