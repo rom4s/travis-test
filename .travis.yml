@@ -36,7 +36,8 @@ jobs:
       script:
         # - cd '/C/Program Files (x86)/Microsoft Visual Studio/2017/BuildTools/VC/Auxiliary/Build/' && powershell "cmd /C '.\vcvarsall.bat x86; cl; echo 12345'" && cd $WDIR && pwd
         # - echo "C:\Program Files (x86)\Microsoft Visual Studio\2017\BuildTools\VC\Auxiliary\Build\vcvarsall.bat" 
-        - cmd.exe /C 'C:\Program Files (x86)\Microsoft Visual Studio\2017\BuildTools\VC\Auxiliary\Build\vcvarsall.bat'
+        # - cmd.exe /C 'C:\Program Files (x86)\Microsoft Visual Studio\2017\BuildTools\VC\Auxiliary\Build\vcvarsall.bat'
+        - powershell 'windows_run.bat'
         - echo 'ok?'
 
 # script: python3 --version; python --version; pip3 --version; pip --version; echo ~; ls; pwd; cl; echo 'ok?'
