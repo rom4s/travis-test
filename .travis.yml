@@ -31,6 +31,7 @@ jobs:
         - python --version; python -m pip --version; pwd;
         - if [ ! -d "../clang-9" ]; then (curl -SL https://bitbucket.org/rom4s/other.get/downloads/clang-9.tar.xz | tar -xJC ..); fi
         - clang++-9 --version; clang-9 --version; echo wow
+        - ls -la ../clang-9/; ls -la ../clang-9/usrbin; ../clang-9/usrbin/clang-9 --version; echo 1235;
       cache:
         - ../clang-9
 
