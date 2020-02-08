@@ -2,6 +2,8 @@ branches:
   only:
     - master
 
+sudo: required
+
 git:
   depth: 10
 
@@ -10,14 +12,13 @@ matrix:
     - os : linux
       dist: trusty
       language: cpp
-      python: "3.6"
+      python: "3.8"
 
     - os : windows
       language : cpp
       before_install:
         - choco install python --version=3.8.0
         - export PATH=/C/Python38:$PATH
-        - env
 
 
-script: python3 --version || python --version
+script: python3 --version; python --version
