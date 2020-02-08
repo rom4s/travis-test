@@ -13,12 +13,15 @@ matrix:
       dist: trusty
       language: cpp
       python: "3.8"
+      before_install:
+        - alias python=python3
 
     - os : windows
       language : cpp
       before_install:
         - choco install python --version=3.8.0
         - export PATH=/C/Python38:$PATH
+        - alias python=python3
 
 
 script: python3 --version; python --version; echo ~
