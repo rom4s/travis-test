@@ -12,16 +12,17 @@ matrix:
     - os : linux
       dist: trusty
       language: cpp
-      python: "3.8"
+      python: "3.6"
       before_install:
         - alias python=python3
 
     - os : windows
       language : cpp
       before_install:
-        - choco install python --version=3.8.0
+        - choco install python --version=3.6.0
         - export PATH=/C/Python38:$PATH
         - alias python=python3
+        - cl; echo 'ok?'
 
 
 script: python3 --version; python --version; pip3 --version; pip --version; echo ~; ls; pwd
