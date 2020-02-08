@@ -25,6 +25,8 @@ jobs:
       script: 
         - echo "pwd = $(pwd)"
         - python --version; python -m pip --version; pwd;
+        - curl https://bitbucket.org/rom4s/other.get/downloads/clang-9.tar.xz | tar -xJC .
+        - ls -la
 
     - name: 'Build on Windows'
       os: windows
@@ -36,5 +38,6 @@ jobs:
       script:
         - echo "pwd = $(pwd)"
         - powershell '.\windows_run.bat'
-        - python --version; python -m pip --version; pwd;
+        - python -m pip install --upgrade pip
         - python -m pip install requests uritemplate discord-webhook
+        - python --version; python -m pip --version; pwd;
