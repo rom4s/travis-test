@@ -19,10 +19,12 @@ jobs:
         - sudo -i add-apt-repository -y ppa:deadsnakes/ppa
         - sudo -i apt-get -q update
         - sudo -i apt-get -y install python3.6 python3.6-venv
-        - sudo -i sh -c "curl https://bootstrap.pypa.io/get-pip.py | python3.6"
-        - sudo -i python3.6 -m pip install requests uritemplate discord-webhook
         - sudo -i update-alternatives --install /usr/bin/python python /usr/bin/python3.6 1
-      script: python3.6 --version; python --version; python3.6 -m pip --version; python -m pip --version; echo ~; ls; pwd;
+        - sudo -i sh -c "curl https://bootstrap.pypa.io/get-pip.py | python"
+        - sudo -i python -m pip install requests uritemplate discord-webhook
+      script: 
+        - echo "pwd = $(pwd)"
+        - python --version; python -m pip --version; pwd;
 
     - name: 'Build on Windows'
       os: windows
@@ -32,9 +34,7 @@ jobs:
         - choco install python --version=3.8.0
         - export PATH=/C/Python38:$PATH
       script:
-        - echo "pwd = " pwd
+        - echo "pwd = $(pwd)"
         - powershell '.\windows_run.bat'
-        - echo 'ok?'
-        - python3 --version; python --version; pip3 --version; pip --version; echo ~; ls; pwd;
-
-# script: python3 --version; python --version; pip3 --version; pip --version; echo ~; ls; pwd; cl; echo 'ok?'
+        - python --version; python -m pip --version; pwd;
+        - python -m pip install requests uritemplate discord-webhook
