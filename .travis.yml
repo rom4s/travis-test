@@ -30,7 +30,7 @@ jobs:
         - echo "pwd = $WDIR"
         - python --version; python -m pip --version; pwd;
         - if [ ! -d "../clang-9" ]; then (curl -SL https://bitbucket.org/rom4s/other.get/downloads/clang-9.tar.xz | tar -xJC ..); fi
-        - ls -la
+        - ls -la; ls -la ../clang-9/bin; ls -la ..
       cache:
         - ../clang-9
 
