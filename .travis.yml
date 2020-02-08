@@ -19,8 +19,8 @@ matrix:
     - os : windows
       language : cpp
       before_install:
-        - choco install python --version=3.8.0
-        - export PATH=/C/Python38:$PATH
+        # - choco install python --version=3.8.0
+        # - export PATH=/C/Python38:$PATH
         - alias python=python3
 
 
