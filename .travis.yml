@@ -21,9 +21,8 @@ jobs:
         - sudo -i apt-get -y install python3.6 python3.6-venv
         - sudo -i sh -c "curl https://bootstrap.pypa.io/get-pip.py | python3.6"
         - sudo -i python3.6 -m pip install requests uritemplate discord-webhook
-        - alias python=python3
-        - alias
-      script: python3 --version; python --version; pip3 --version; pip --version; echo ~; ls; pwd;
+        - sudo -i update-alternatives --install /usr/bin/python python /usr/bin/python3.6 1
+      script: python3.6 --version; python --version; python3.6 -m pip --version; python -m pip --version; echo ~; ls; pwd;
 
     - name: 'Build on Windows'
       os: windows
