@@ -24,4 +24,4 @@ matrix:
         - alias python=python3
 
 
-script: python3 --version; python --version; echo ~
+script: python3 --version; python --version; echo ~; ls
