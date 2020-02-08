@@ -19,7 +19,7 @@ jobs:
       python: "3.6"
       before_install:
         - export WDIR=$(pwd)
-        - export PATH=~/.local/bin:$WDIR/clang9/usrbin:$PATH
+        - export PATH=~/.local/bin:$WDIR/../clang9/usrbin:$PATH
         - sudo -i add-apt-repository -y ppa:deadsnakes/ppa
         - sudo -i apt-get -q update
         - sudo -i apt-get -y install python3.6 python3.6-venv
