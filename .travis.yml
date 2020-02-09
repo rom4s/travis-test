@@ -39,11 +39,11 @@ jobs:
       python: "3.8"
       before_install:
         - export WDIR=$(pwd)
-        - choco install python --version=3.8.0
+        - if [ ! -d "/C/Python38" ]; then (choco install python --version=3.8.0); fi
         - export PATH=/C/Python38:/C/Python38/Scripts:$PATH
+        - python -m pip install --upgrade pip
+        - python -m pip install requests uritemplate discord-webhook
       script:
         - echo "pwd = $WDIR"
         - powershell '.\windows_run.bat'
-        - python -m pip install --upgrade pip
-        - python -m pip install requests uritemplate discord-webhook
         - python --version; python -m pip --version; pwd;
