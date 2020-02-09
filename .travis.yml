@@ -46,6 +46,5 @@ jobs:
       script:
         - echo "pwd = $WDIR"
         - powershell '.\windows_run.bat'
-        - python --version; python -m pip --version; pwd;
       cache:
         - /C/Python38
