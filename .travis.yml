@@ -19,20 +19,26 @@ jobs:
       python: "3.6"
       before_install:
         - export WDIR=$(pwd)
-        - export PATH=~/.local/bin:$WDIR/../clang-9/usrbin:$PATH
-        - sudo -i add-apt-repository -y ppa:deadsnakes/ppa
-        - sudo -i apt-get -q update
-        - sudo -i apt-get -y install python3.6 python3.6-venv
-        - sudo -i update-alternatives --install /usr/bin/python python /usr/bin/python3.6 1
-        - sudo -i sh -c "curl https://bootstrap.pypa.io/get-pip.py | python"
-        - sudo -i python -m pip install requests uritemplate discord-webhook
-        - if [ ! -d "../clang-9/bin" ]; then (curl -SL https://bitbucket.org/rom4s/other.get/downloads/clang-9.tar.xz | tar -xJC ..); fi
+        - export PYTHON_VER=3.6.8
+        - export PATH=$HOME/.local/bin:$WDIR/../clang-9/usrbin:$PATH
+        - if [[ ! -s "$HOME/.pythonz/etc/bashrc" ]]; then (curl -kL https://raw.github.com/saghul/pythonz/master/pythonz-install | bash); fi
+        - source $HOME/.pythonz/etc/bashrc && $(pythonz locate $PYTHON_VER) --version >/dev/null 2>&1 || pythonz install $PYTHON_VER
+        - mkdir -p $HOME/.local/bin/ && ln -s $(pythonz locate $PYTHON_VER) $HOME/.local/bin/python
+        - python -m pip install --upgrade pip
+        # - sudo -i add-apt-repository -y ppa:deadsnakes/ppa
+        # - sudo -i apt-get -q update
+        # - sudo -i apt-get -y install python3.6 python3.6-venv
+        # - sudo -i update-alternatives --install /usr/bin/python python /usr/bin/python3.6 1
+        # - sudo -i sh -c "curl https://bootstrap.pypa.io/get-pip.py | python"
+        # - sudo -i python -m pip install requests uritemplate discord-webhook
+        - if [ ! -d "../clang-9/bin" ]; then (curl -SL https://bitbucket.org/rom4s/other.get/downloads/clang-9-ubuntu-14.04.tar.xz | tar -xJC ..); fi
       script: 
         - echo "pwd = $WDIR"
         - python --version; python -m pip --version; pwd;
         - clang++-9 --version; clang-9 --version; echo wow
       cache:
         - ../clang-9
+        - $HOME/.pythonz
 
     - name: 'Build on Windows'
       os: windows
