@@ -10,13 +10,24 @@ git:
 cache:
   - ../mysql-5.5
 
-
 jobs:
   include:
     - name: 'Build on Linux (Ubuntu 14.04)'
       os: linux
       dist: trusty
       python: "3.6"
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+            - llvm-toolchain-trusty-7
+            - llvm-toolchain-trusty-8
+          packages:
+            - lib32stdc++6
+            - lib32z1-dev
+            - libc6-dev-i386
+            - linux-libc-dev
+            - g++-multilib
       before_install:
         - export WDIR=$(pwd)
         - export PYTHON_VER=3.6.8
