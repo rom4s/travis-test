@@ -20,11 +20,11 @@ jobs:
       before_install:
         - export WDIR=$(pwd)
         - export PATH=~/.local/bin:$WDIR/../clang-9/usrbin:$PATH
-        - sudo -i add-apt-repository -y ppa:deadsnakes/ppa
+        - if [ ! -d "/usr/lib/python3.6/venv" ]; then (sudo -i add-apt-repository -y ppa:deadsnakes/ppa); fi
         - sudo -i apt-get -q update
         - sudo -i apt-get -y install python3.6 python3.6-venv
         - sudo -i update-alternatives --install /usr/bin/python python /usr/bin/python3.6 1
-        - sudo -i sh -c "curl https://bootstrap.pypa.io/get-pip.py | python"
+        - if [ ! -d "/usr/lib/python3.6/venv" ]; then (sudo -i sh -c "curl https://bootstrap.pypa.io/get-pip.py | python"); fi
         - sudo -i python -m pip install requests uritemplate discord-webhook
         - if [ ! -d "../clang-9/bin" ]; then (curl -SL https://bitbucket.org/rom4s/other.get/downloads/clang-9.tar.xz | tar -xJC ..); fi
       script: 
@@ -33,6 +33,8 @@ jobs:
         - clang++-9 --version; clang-9 --version; echo wow
       cache:
         - ../clang-9
+        - /usr/bin/python3.6
+        - /usr/lib/python3.6
 
     - name: 'Build on Windows'
       os: windows
