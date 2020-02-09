@@ -26,7 +26,7 @@ jobs:
         - sudo -i update-alternatives --install /usr/bin/python python /usr/bin/python3.6 1
         - sudo -i sh -c "curl https://bootstrap.pypa.io/get-pip.py | python"
         - sudo -i python -m pip install requests uritemplate discord-webhook
-        - if [ ! -d "../clang-9" ]; then (curl -SL https://bitbucket.org/rom4s/other.get/downloads/clang-9.tar.xz | tar -xJC ..); fi
+        - if [ ! -d "../clang-9/bin" ]; then (curl -SL https://bitbucket.org/rom4s/other.get/downloads/clang-9.tar.xz | tar -xJC ..); fi
       script: 
         - echo "pwd = $WDIR"
         - python --version; python -m pip --version; pwd;
@@ -40,9 +40,7 @@ jobs:
       before_install:
         - export WDIR=$(pwd)
         - export PATH=/C/Python38:/C/Python38/Scripts:$PATH
-        - if [ ! -d "/C/Python38" ]; then (choco install python --version=3.8.0); fi
-        - if [ ! -d "/C/Python38" ]; then (echo 123456); fi
-        - if [ -d "/C/Python38" ]; then (echo 8966122); fi
+        - if [ ! -d "/C/Python38/Scripts" ]; then (choco install python --version=3.8.0); fi
         - python -m pip install --upgrade pip
         - python -m pip install requests uritemplate discord-webhook
       script:
@@ -50,4 +48,4 @@ jobs:
         - powershell '.\windows_run.bat'
         - python --version; python -m pip --version; pwd;
       cache:
-        - C:\Python38
+        - /C/Python38
