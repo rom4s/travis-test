@@ -29,6 +29,7 @@ jobs:
             - linux-libc-dev
             - g++-multilib
       before_install:
+        - exit 0
         - export WDIR=$(pwd)
         - export PYTHON_VER=3.6.8
         - export PATH=$HOME/.local/bin:$WDIR/../clang-9/usrbin:$PATH
@@ -50,6 +51,7 @@ jobs:
       os: windows
       python: "3.8"
       before_install:
+        - exit 0
         - export WDIR=$(pwd)
         - export PATH=/C/Python38:/C/Python38/Scripts:$PATH
         - if [ ! -d "/C/Python38/Scripts" ]; then (choco install python --version=3.8.0); fi
